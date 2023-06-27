@@ -1,0 +1,35 @@
+.PageToolbar {
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: var(--header-h);
+}
+.PageToolbar__sx {
+  width: 30%;
+  min-width: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.PageToolbar__title {
+  width: 30%;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.PageToolbar__dx {
+  width: 30%;
+  min-width: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
