@@ -1,0 +1,32 @@
+.ImgSelected {
+  width: 100%;
+  height: 100%;
+}
+
+.primary-filter {
+  filter: var(--color-primary-filter);
+}
+.secondary-filter {
+  filter: var(--color-secondary-filter);
+}
+.tertiary-tertiary {
+  filter: var(--color-tertiary-filter);
+}
+.success-filter {
+  filter: var(--color-success-filter);
+}
+.warning-filter {
+  filter: var(--color-warning-filter);
+}
+.danger-filter {
+  filter: var(--color-danger-filter);
+}
+.medium-filter {
+  filter: var(--color-medium-filter);
+}
+.background-filter {
+  filter: var(--background-color-filter);
+}
+.text-filter {
+  filter: var(--text-color-filter);
+}

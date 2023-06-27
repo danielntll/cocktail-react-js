@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --color-primary: #3880ff;
+  --color-primary-filter: invert(45%) sepia(69%) saturate(3397%)
+    hue-rotate(205deg) brightness(100%) contrast(106%);
+  --color-primary-rgb: 56, 128, 255;
+  --color-primary-contrast: #ffffff;
+  --color-primary-contrast-rgb: 255, 255, 255;
+  --color-primary-shade: #3171e0;
+  --color-primary-tint: #4c8dff;
+
+  --color-secondary: #5260ff;
+  --color-secondary-filter: invert(30%) sepia(37%) saturate(3925%)
+    hue-rotate(226deg) brightness(108%) contrast(100%);
+  --color-secondary-rgb: 82, 96, 255;
+  --color-secondary-contrast: #ffffff;
+  --color-secondary-contrast-rgb: 255, 255, 255;
+  --color-secondary-shade: #4854e0;
+  --color-secondary-tint: #6370ff;
+
+  --color-tertiary: #6b50a8;
+  --color-tertiary-filter: invert(37%) sepia(16%) saturate(2535%)
+    hue-rotate(219deg) brightness(84%) contrast(81%);
+  --color-tertiary-rgb: 82, 96, 255;
+  --color-tertiary-contrast: #ffffff;
+  --color-tertiary-contrast-rgb: 255, 255, 255;
+  --color-tertiary-shade: #4854e0;
+  --color-tertiary-tint: #6370ff;
+
+  --color-success: #2dd36f;
+  --color-success-filter: invert(75%) sepia(42%) saturate(849%)
+    hue-rotate(82deg) brightness(91%) contrast(79%);
+  --color-success-rgb: 45, 211, 111;
+  --color-success-contrast: #000000;
+  --color-success-contrast-rgb: 0, 0, 0;
+  --color-success-shade: #28ba62;
+  --color-success-tint: #42d77d;
+
+  --color-warning: #ffc409;
+  --color-warning-filter: invert(68%) sepia(97%) saturate(837%)
+    hue-rotate(353deg) brightness(105%) contrast(101%);
+  --color-warning-rgb: 255, 196, 9;
+  --color-warning-contrast: #000000;
+  --color-warning-contrast-rgb: 0, 0, 0;
+  --color-warning-shade: #e0ac08;
+  --color-warning-tint: #ffca22;
+
+  --color-danger: #eb445a;
+  --color-danger-filter: invert(42%) sepia(100%) saturate(3565%)
+    hue-rotate(329deg) brightness(97%) contrast(89%);
+  --color-danger-rgb: 235, 68, 90;
+  --color-danger-contrast: #ffffff;
+  --color-danger-contrast-rgb: 255, 255, 255;
+  --color-danger-shade: #cf3c4f;
+  --color-danger-tint: #ed576b;
+
+  --color-medium: #92949c;
+  --color-medium-filter: invert(60%) sepia(10%) saturate(208%)
+    hue-rotate(191deg) brightness(96%) contrast(90%);
+  --color-medium-rgb: 146, 148, 156;
+  --color-medium-contrast: #000000;
+  --color-medium-contrast-rgb: 0, 0, 0;
+  --color-medium-shade: #808289;
+  --color-medium-tint: #9d9fa6;
+
+  --color-light: #f4f5f8;
+  --color-light-filter: invert(94%) sepia(2%) saturate(303%) hue-rotate(188deg)
+    brightness(103%) contrast(96%);
+  --color-light-rgb: 244, 245, 248;
+  --color-light-contrast: #000000;
+  --color-light-contrast-rgb: 0, 0, 0;
+  --color-light-shade: #d7d8da;
+  --color-light-tint: #f5f6f9;
+
+  --background-color: #1c1c1c;
+  --background-color-filter: invert(4%) sepia(33%) saturate(7%)
+    hue-rotate(314deg) brightness(91%) contrast(85%);
+  --background-color-rgb: 28, 28, 28;
+
+  --text-color: #ffffff;
+  --text-color-filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(172deg)
+    brightness(106%) contrast(105%);
+  --text-color-rgb: 255, 255, 255;
+
+  --color-step-50: #272727;
+  --color-step-100: #333333;
+  --color-step-150: #3e3e3e;
+  --color-step-200: #494949;
+  --color-step-250: #555555;
+  --color-step-300: #606060;
+  --color-step-350: #6b6b6b;
+  --color-step-400: #777777;
+  --color-step-450: #828282;
+  --color-step-500: #8e8e8e;
+  --color-step-550: #999999;
+  --color-step-600: #a4a4a4;
+  --color-step-650: #b0b0b0;
+  --color-step-700: #bbbbbb;
+  --color-step-750: #c6c6c6;
+  --color-step-800: #d2d2d2;
+  --color-step-850: #dddddd;
+  --color-step-900: #e8e8e8;
+  --color-step-950: #f4f4f4;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: "Noto Sans", sans-serif;
+}
