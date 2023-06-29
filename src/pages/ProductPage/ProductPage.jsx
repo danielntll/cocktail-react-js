@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { pageAnimation } from '../../utils/motionAnimations';
 import { useEffect, useState } from "react";
 import './ProductPage.css';
@@ -18,6 +18,9 @@ import Backbutton from '../../components/BackButton/Backbutton';
 const ProductPage = () => {
   // VARIABLES ------------------------------
   let { productId } = useParams();
+  const location = useLocation();
+  const urlFrom = location.state?.from ? location.state?.from : undefined;
+  console.log(urlFrom);
   // CONDITIONS -----------------------------
   const [isLiked, setIsLiked] = useState(false);
   const [isModalIngredients, setIsModalIngredients] = useState(false);
@@ -61,7 +64,7 @@ const ProductPage = () => {
       >
         <div>
           <PageToolbar
-            leftButton={<Backbutton styleClass={"ProductPage__backbutton"} to='/' />}
+            leftButton={<Backbutton styleClass={"ProductPage__backbutton"} to={urlFrom ? urlFrom : '/'} />}
           />
         </div>
         <div className="ProductPage__header">

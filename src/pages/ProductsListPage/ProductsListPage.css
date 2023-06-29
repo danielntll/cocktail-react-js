@@ -1,0 +1,20 @@
+.ProductsListPage {
+}
+
+.ProductsListPage__header {
+  padding: 10px 0 0 0;
+}
+
+.ProductsListPage__content {
+  padding: 16px;
+}
+
+.ProductsListPage__content__title {
+  margin: 0;
+}
+
+.ProductsListPage__content__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

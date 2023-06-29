@@ -3,6 +3,7 @@ import './css/App.css'
 import HomePage from './pages/HomePage';
 import { AnimatePresence } from "framer-motion";
 import ProductPage from './pages/ProductPage';
+import ProductsListPage from './pages/ProductsListPage/ProductsListPage';
 
 function App() {
 
@@ -17,12 +18,10 @@ function App() {
     const location = useLocation();
     return (
       <Routes location={location} key={location.key}>
-        <Route path="/"
-
-        // element={<HomePage />} //--header o footer
-        >
+        <Route path="/">
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/product/:productId" element={<ProductPage />} />
+          <Route exact path="/products/:listName" element={<ProductsListPage />} />
         </Route>
       </Routes>
     )

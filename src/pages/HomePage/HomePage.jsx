@@ -10,6 +10,7 @@ import CardsSwiper from '../../components/CardsSwiper';
 import CardDrinkSmall from '../../components/CardDrinkSmall';
 import Button from '../../components/Button';
 import { localGet, localSave } from '../../utils/localStorage';
+import SearchInput from '../../components/SearchInput/SearchInput';
 
 
 const HomePage = () => {
@@ -19,11 +20,14 @@ const HomePage = () => {
   const [categories, setCategories] = useState(localGet("categories"));
   const [random, setRandom] = useState(localGet("random"));
   const [sectionFiltered1, setSectionFiltered1] = useState(localGet("sectionFiltered1"));
+  const [sectionFiltered2, setSectionFiltered2] = useState(localGet("sectionFiltered2"));
   // FUNTIONS -------------------------------
   useEffect(() => {
-    if (localGet("categories") == []) handleGetCategories();
-    if (localGet("random") == []) handleGetRandom();
-    if (localGet("sectionFiltered1") == []) handleFiltered("Vodka")
+    console.log(localGet("categories").length)
+    if (localGet("categories").length === 0) handleGetCategories();
+    if (localGet("random").length === 0) handleGetRandom();
+    if (localGet("sectionFiltered1").length === 0) handleFiltered("Vodka", setSectionFiltered1, "sectionFiltered1")
+    if (localGet("sectionFiltered2").length === 0) handleFiltered("Gin", setSectionFiltered2, "sectionFiltered2");
   }, [])
 
   const handleGetCategories = async () => {
@@ -42,7 +46,7 @@ const HomePage = () => {
     setRandom(auxArr)
   }
 
-  const handleFiltered = async (name) => {
+  const handleFiltered = async (name, setTo, setName) => {
     const auxArr = [];
     const aux = await getFilteredIngredient(name);
     console.log(aux)
@@ -50,7 +54,7 @@ const HomePage = () => {
     for (let index = 0; index < 10; index++) {
       auxArr.push(aux[index])
     }
-    setSectionFiltered1(
+    setTo(
       {
         drinks: auxArr,
         total: aux.length,
@@ -58,7 +62,7 @@ const HomePage = () => {
         allDrinks: aux
       }
     )
-    localSave("sectionFiltered1", {
+    localSave(setName, {
       drinks: auxArr,
       total: aux.length,
       name: name,
@@ -73,11 +77,12 @@ const HomePage = () => {
       }
     })
   }
-  const handleOpenFilteredPage = () => {
-    return navigate("/product/" + 0, {
+
+  const handleOpenFilteredPage = (data) => {
+    return navigate("/products/" + data.name, {
       state: {
         dir: "forward",
-        data: sectionFiltered1,
+        data: data,
       }
     })
   }
@@ -103,38 +108,11 @@ const HomePage = () => {
         <h1>Drinklandia</h1>
       </div>
 
-      {/* --------------RANDOM---------------- */}
+      {/* --------------SEARCH SECTION ---------------- */}
       <div className='HomePage__section'>
         <div className='HomePage__section__header'>
-          <h1 className='HomePage__section__header__title'>10 Randoms</h1>
-          <Button onClickEv={() => { handleGetRandom() }} text={"Generate new"} />
+          <SearchInput />
         </div>
-        <div className='HomePage__section__content'>
-          <CardsSwiper data={random} />
-        </div>
-      </div>
-      {/* --------------SECTION 1---------------- */}
-      <div className='HomePage__section'>
-        <div className='HomePage__section__header'>
-          <h1 className='HomePage__section__header__title'>{sectionFiltered1?.name}</h1>
-          <Button onClickEv={() => { handleOpenFilteredPage() }} text={"Explore " + sectionFiltered1?.total + " more"} />
-        </div>
-        <div className='HomePage__section__content'>
-          <div className='HomePage__section__content__categoryList'>
-            {sectionFiltered1?.drinks.map((drink, index) => {
-              return (
-                <div className='HomePage__section__drinks__list'>
-                  <CardDrinkSmall
-                    drink={drink}
-                    key={index + "sectionFiltered1" + drink.idDrink}
-                    callback={() => handleOpenProductPage(drink.idDrink)}
-                  />
-                </div>
-              )
-            })}
-          </div>
-        </div>
-
       </div>
       {/* --------------CATEGORY---------------- */}
       <div className='HomePage__section'>
@@ -157,6 +135,62 @@ const HomePage = () => {
         </div>
 
       </div>
+      {/* --------------SECTION 1---------------- */}
+      <div className='HomePage__section'>
+        <div className='HomePage__section__header'>
+          <h1 className='HomePage__section__header__title'>{sectionFiltered1?.name}</h1>
+          <Button onClickEv={() => { handleOpenFilteredPage(sectionFiltered1) }} text={"Explore " + sectionFiltered1?.total + " more"} />
+        </div>
+        <div className='HomePage__section__content'>
+          <div className='HomePage__section__content__categoryList'>
+            {sectionFiltered1?.drinks.map((drink, index) => {
+              return (
+                <div key={index + "sectionFiltered1" + drink.idDrink} className='HomePage__section__drinks__list'>
+                  <CardDrinkSmall
+                    drink={drink}
+                    callback={() => handleOpenProductPage(drink.idDrink)}
+                  />
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+      </div>
+      {/* --------------SECTION 2---------------- */}
+      <div className='HomePage__section'>
+        <div className='HomePage__section__header'>
+          <h1 className='HomePage__section__header__title'>{sectionFiltered2?.name}</h1>
+          <Button onClickEv={() => { handleOpenFilteredPage(sectionFiltered2) }} text={"Explore " + sectionFiltered2?.total + " more"} />
+        </div>
+        <div className='HomePage__section__content'>
+          <div className='HomePage__section__content__categoryList'>
+            {sectionFiltered2?.drinks?.map((drink, index) => {
+              return (
+                <div key={index + "sectionFiltered1" + drink.idDrink} className='HomePage__section__drinks__list'>
+                  <CardDrinkSmall
+                    drink={drink}
+                    callback={() => handleOpenProductPage(drink.idDrink)}
+                  />
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+      </div>
+      {/* --------------RANDOM SECTION---------------- */}
+      <div className='HomePage__section'>
+        <div className='HomePage__section__header'>
+          <h1 className='HomePage__section__header__title'>10 Randoms</h1>
+          <Button onClickEv={() => { handleGetRandom() }} text={"Generate new"} />
+        </div>
+        <div className='HomePage__section__content'>
+          <CardsSwiper data={random} />
+        </div>
+      </div>
+
+
       {/* ------------------------ */}
 
     </motion.div>

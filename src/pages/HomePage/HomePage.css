@@ -1,5 +1,7 @@
 .HomePage {
   overflow-x: hidden;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .HomePage__section {

@@ -46,3 +46,10 @@ export const getFilteredIngredient = async (name) => {
   const data = await res.json();
   return data.drinks;
 }
+
+// --------------------- PRODUCT BY NAME --------------------------
+export const getProductsByName = async (name) => {
+  const res = await fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + name);
+  const data = await res.json();
+  return data.drinks;
+}

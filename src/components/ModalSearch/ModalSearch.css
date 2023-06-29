@@ -1,0 +1,52 @@
+.ModalSearch {
+  display: none;
+  opacity: 0;
+  height: 0vh;
+  width: 100vw;
+  margin: auto;
+  background-color: var(--color-step-150);
+  z-index: 999;
+  overflow-x: hidden;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.ModalSearch__header {
+}
+
+.ModalSearch__content {
+  padding: 16px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ModalSearch__Button img {
+  filter: var(--text-color-filter);
+}
+
+.ModalSearch__section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ModalSearch__section__title {
+  text-transform: uppercase;
+  font-size: x-small;
+  margin: 0;
+  color: var(--color-step-550);
+}
+.ModalSearch__section__content {
+  margin: 0;
+}
+.ModalSearch__section__content__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
