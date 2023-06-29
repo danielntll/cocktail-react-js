@@ -11,6 +11,7 @@ export const pageAnimation = () => {
 
   switch (direction) {
     case "back":
+      console.log("BACK animation");
       return (
         {
           initial: {
@@ -23,6 +24,7 @@ export const pageAnimation = () => {
         }
       );
     case "forward":
+      console.log("forward animation");
       return (
         {
           initial: {
@@ -36,6 +38,7 @@ export const pageAnimation = () => {
       );
 
     case "open":
+      console.log("open animation");
       return (
         {
           initial: {
@@ -49,6 +52,7 @@ export const pageAnimation = () => {
       );
 
     default:
+      console.log("DEFAULT animation");
       return (
         {
           initial: {

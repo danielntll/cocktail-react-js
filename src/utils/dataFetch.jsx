@@ -39,3 +39,10 @@ export const getRandom = async () => {
   const data = await res.json();
   return data.drinks;
 }
+
+//*---------------------- INGREDIENT FILTERED ---------------------
+export const getFilteredIngredient = async (name) => {
+  const res = await fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + name);
+  const data = await res.json();
+  return data.drinks;
+}

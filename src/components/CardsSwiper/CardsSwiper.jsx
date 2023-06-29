@@ -31,7 +31,8 @@ const CardsSwiper = ({ data }) => {
       >
         {handleData?.map((card, index) => {
           return (
-            <SwiperSlide key={index + "randomCard"}>
+            <SwiperSlide className='CardsSwiper__Slide'
+              key={index + "randomCard"}>
               <Card data={card} />
             </SwiperSlide>
           )

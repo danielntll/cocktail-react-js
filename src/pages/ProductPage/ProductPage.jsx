@@ -3,7 +3,6 @@ import { pageAnimation } from '../../utils/motionAnimations';
 import { useEffect, useState } from "react";
 import './ProductPage.css';
 import { motion } from "framer-motion";
-import { ProductType } from '../../utils/dataMock';
 import ImgSelected from '../../components/ImgSelected';
 import heartIcon from '../../assets/icons/heart.png';
 import heartSelectedIcon from '../../assets/icons/heart-selected.png';
@@ -13,6 +12,8 @@ import Instructions from '../../components/InstructionsSection';
 import Ingredients from '../../components/IngredientsSection';
 import ModalIngredients from '../../components/ModalIngredients/ModalIngredients';
 import { getProductInfoById } from '../../utils/dataFetch';
+import PageToolbar from '../../components/PageToolbar';
+import Backbutton from '../../components/BackButton/Backbutton';
 
 const ProductPage = () => {
   // VARIABLES ------------------------------
@@ -58,6 +59,11 @@ const ProductPage = () => {
         initial="initial"
         animate="final"
       >
+        <div>
+          <PageToolbar
+            leftButton={<Backbutton styleClass={"ProductPage__backbutton"} to='/' />}
+          />
+        </div>
         <div className="ProductPage__header">
           <img className="ProductPage__header__img" src={productData?.strDrinkThumb} alt={productData?.strImageAttribution} />
         </div>
