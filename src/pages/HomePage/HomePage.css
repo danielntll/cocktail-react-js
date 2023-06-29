@@ -7,6 +7,10 @@
 }
 .HomePage__section__header {
   padding: 0 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .HomePage__section__header__title {
@@ -25,7 +29,14 @@
   align-items: center;
   gap: 10px;
   overflow: scroll;
+  width: 100%;
 }
 .HomePage__section__content__category_button img {
   filter: var(--text-color-filter);
+}
+
+.HomePage__section__drinks__list {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }

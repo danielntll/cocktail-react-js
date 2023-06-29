@@ -39,6 +39,7 @@
 
 .ProductPage__content__header__name {
   margin: 0;
+  width: 70%;
 }
 
 .ProductPage__content__header__like {
@@ -93,4 +94,8 @@
 }
 .ProductPage__content__section__text {
   margin-top: 16px;
+}
+
+.ProductPage__backbutton img {
+  filter: var(--text-color-filter);
 }

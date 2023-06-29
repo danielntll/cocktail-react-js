@@ -18,9 +18,10 @@ function App() {
     return (
       <Routes location={location} key={location.key}>
         <Route path="/"
+
         // element={<HomePage />} //--header o footer
         >
-          <Route index element={<HomePage />} />
+          <Route exact path="/" element={<HomePage />} />
           <Route exact path="/product/:productId" element={<ProductPage />} />
         </Route>
       </Routes>

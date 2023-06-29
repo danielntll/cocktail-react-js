@@ -1,5 +1,5 @@
 .Card {
-  height: calc(600px - 32px);
+  height: calc(600px);
   background-color: aqua;
   border-radius: 16px;
   padding: 16px;
@@ -20,7 +20,7 @@
 .Card__content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   margin-top: 10px;
 }
 
