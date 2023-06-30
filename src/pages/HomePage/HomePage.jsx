@@ -32,8 +32,21 @@ const HomePage = () => {
 
   const handleGetCategories = async () => {
     const aux = await getCategories();
-    localSave("categories", aux);
-    setCategories(aux);
+    let auxFormated = aux.map(item => item.strCategory.replace('/', '-'));
+    console.log(auxFormated)
+    localSave("categories", {
+      auxFormated: auxFormated,
+      aux: aux,
+    });
+
+    setCategories({
+      auxFormated: auxFormated,
+      aux: aux,
+    });
+    console.log("AUX : ", {
+      auxFormated: auxFormated,
+      aux: aux,
+    })
   }
 
   const handleGetRandom = async () => {
@@ -87,10 +100,13 @@ const HomePage = () => {
     })
   }
 
-  const handelOpenCategoryPage = (categoryName) => {
-    return navigate("/category/" + categoryName, {
+  const handelOpenCategoryPage = (categoryNameFormated, categoryName) => {
+    return navigate("/products/" + categoryNameFormated, {
       state: {
-        dir: "forward"
+        dir: "forward",
+        type: "category",
+        categoryName: categoryName,
+        categoryNameFormated: categoryNameFormated,
       }
     })
   }
@@ -121,13 +137,13 @@ const HomePage = () => {
         </div>
         <div className='HomePage__section__content'>
           <div className='HomePage__section__content__categoryList'>
-            {categories?.map((category, index) => {
+            {categories?.aux?.map((category, index) => {
               return (
                 <ButtonContent
                   className='HomePage__section__content__category_button'
                   text={category.strCategory}
-                  key={index + "homepage" + categories}
-                  callback={() => handelOpenCategoryPage(category.strCategory)}
+                  key={index + "homepage" + categories?.auxFormated[index]}
+                  callback={() => handelOpenCategoryPage(categories?.auxFormated[index], category.strCategory)}
                 />
               )
             })}
@@ -143,7 +159,7 @@ const HomePage = () => {
         </div>
         <div className='HomePage__section__content'>
           <div className='HomePage__section__content__categoryList'>
-            {sectionFiltered1?.drinks.map((drink, index) => {
+            {sectionFiltered1?.drinks?.map((drink, index) => {
               return (
                 <div key={index + "sectionFiltered1" + drink.idDrink} className='HomePage__section__drinks__list'>
                   <CardDrinkSmall

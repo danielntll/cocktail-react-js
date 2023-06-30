@@ -4,31 +4,64 @@ import { useEffect, useState } from 'react';
 import PageToolbar from '../../components/PageToolbar';
 import Backbutton from '../../components/BackButton/Backbutton';
 import CardDrinkSmall from '../../components/CardDrinkSmall';
-import { getFilteredIngredient } from '../../utils/dataFetch';
-import { localSave } from '../../utils/localStorage';
+import { getCategoryList, getFilteredIngredient } from '../../utils/dataFetch';
+import { localGet, localSave } from '../../utils/localStorage';
+import { pageAnimation } from '../../utils/motionAnimations';
+import { motion } from "framer-motion";
 
 
 const ProductsListPage = () => {
   // VARIABLES ------------------------------
   let { listName } = useParams();
   const location = useLocation();
-  const urlProps = location.state?.data;
+  const urlProps = location.state;
   console.log(urlProps);
   const navigate = useNavigate();
   // CONDITIONS -----------------------------
   const [productsInfo, setProductsInfo] = useState({});
   // FUNTIONS -------------------------------
   useEffect(() => {
-    if (urlProps) {
-      setProductsInfo(urlProps);
+    if (urlProps?.type === "category" || urlProps.dir === "back") {
+      if (urlProps.dir === "back") {
+        setProductsInfo(localGet(listName))
+      } else {
+        handleGetCategoryData(urlProps?.categoryName, setProductsInfo, urlProps?.categoryNameFormated)
+      }
     } else {
-      handleFiltered(listName, setProductsInfo, listName);
+      if (urlProps?.state?.data) {
+        setProductsInfo(urlProps.data);
+      } else {
+        handleFiltered(listName, setProductsInfo, listName);
+      }
     }
   }, []);
 
   const handleFiltered = async (name, setTo, setName) => {
     const auxArr = [];
     const aux = await getFilteredIngredient(name);
+    console.log(aux)
+
+    for (let index = 0; index < 10; index++) {
+      auxArr.push(aux[index])
+    }
+    setTo(
+      {
+        drinks: auxArr,
+        total: aux.length,
+        name: name,
+        allDrinks: aux
+      }
+    )
+    localSave(setName, {
+      drinks: auxArr,
+      total: aux.length,
+      name: name,
+      allDrinks: aux
+    });
+  }
+  const handleGetCategoryData = async (name, setTo, setName) => {
+    const auxArr = [];
+    const aux = await getCategoryList(name);
     console.log(aux)
 
     for (let index = 0; index < 10; index++) {
@@ -61,7 +94,11 @@ const ProductsListPage = () => {
   }
   // RETURN ---------------------------------
   return (
-    <div className="ProductsListPage">
+    <motion.div
+      variants={pageAnimation()}
+      initial="initial"
+      animate="final"
+      className="ProductsListPage">
       <div className='ProductsListPage__header'>
 
         <PageToolbar
@@ -81,7 +118,7 @@ const ProductsListPage = () => {
         </div>
       </div>
 
-    </div>
+    </motion.div>
   );
 }
 

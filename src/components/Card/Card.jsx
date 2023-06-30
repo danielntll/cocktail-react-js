@@ -14,9 +14,13 @@ const Card = ({ data }) => {
   const [searchIngredient, setSearchIngredient] = useState("");
   // FUNTIONS -------------------------------
   const handelOpenCategoryPage = (name) => {
-    return navigate("/category/" + name, {
+    const formated = name.replace("/", "-");
+    return navigate("/products/" + name, {
       state: {
-        dir: "forward"
+        dir: "forward",
+        type: "category",
+        categoryName: name,
+        categoryNameFormated: formated,
       }
     })
   }
@@ -73,7 +77,7 @@ const Card = ({ data }) => {
               icon={forwardIcon}
               className='Card__content__btn'
 
-              callback={() => handelOpenCategoryPage(data.strDrink)}
+              callback={() => handelOpenCategoryPage(data.strCategory)}
             />
           </div>
         </div>

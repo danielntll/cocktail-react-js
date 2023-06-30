@@ -47,6 +47,13 @@ export const getFilteredIngredient = async (name) => {
   return data.drinks;
 }
 
+//*---------------------- CATEGORY FILTERED ---------------------
+export const getCategoryList = async (name) => {
+  const res = await fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=" + name);
+  const data = await res.json();
+  return data.drinks;
+}
+
 // --------------------- PRODUCT BY NAME --------------------------
 export const getProductsByName = async (name) => {
   const res = await fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + name);

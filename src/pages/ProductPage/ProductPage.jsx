@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { pageAnimation } from '../../utils/motionAnimations';
 import { useEffect, useState } from "react";
 import './ProductPage.css';
@@ -19,6 +19,7 @@ const ProductPage = () => {
   // VARIABLES ------------------------------
   let { productId } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const urlFrom = location.state?.from ? location.state?.from : undefined;
   console.log(urlFrom);
   // CONDITIONS -----------------------------
@@ -50,7 +51,15 @@ const ProductPage = () => {
     setSearchIngredient(Ingredient);
   }
   const handleExploreByCategory = (Category) => {
-    console.log("handleExploreByCategory : ", Category);
+    const formated = Category.replace("/", "-");
+    return navigate("/products/" + Category, {
+      state: {
+        dir: "forward",
+        type: "category",
+        categoryName: Category,
+        categoryNameFormated: formated,
+      }
+    })
   }
 
   // RETURN ---------------------------------
@@ -103,14 +112,14 @@ const ProductPage = () => {
             </div>
           </div>
           {/* GLASS --------------- */}
-          <div className="ProductPage__content__section">
+          {/* <div className="ProductPage__content__section">
             <div>
               <p className="ProductPage__content__section__title">Glass</p>
             </div>
             <div className="ProductPage__content__section__type">
               <Button text={productData?.strGlass} className='ProductPage__button__style' />
             </div>
-          </div>
+          </div> */}
         </div>
       </motion.div>
       {/* MODALS -------------------------------------- */}
